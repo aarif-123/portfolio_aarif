@@ -1285,33 +1285,22 @@
 
     async _speakIntroDeepgram() {
       const introText = `
-        Hello, and welcome.
+Hello, and welcome...
 
-I'm Aarif's AI assistant, and it's a pleasure to meet you.
+I'm Aarif's AI assistant.
 
-Before you explore this portfolio, let me introduce you to the person behind it.
+Allow me to introduce Mohammed Aarif...
 
-Meet Mohammed Aarif. ,,,
+An engineer, AI enthusiast, and lifelong learner passionate about building intelligent solutions for real-world problems.
 
-A builder, an AI enthusiast, and a lifelong learner who is passionate about transforming ideas into impactful technology.,,,
+His work combines Artificial Intelligence, Machine Learning, and Software Engineering to transform ideas into meaningful technology...
 
-For Aarif, engineering is more than writing code. It's about solving problems, creating value, and continuously pushing the boundaries of what's possible.,,,
+This portfolio showcases his projects, experiences, and continuous journey of innovation and growth.
 
-His journey spans Artificial Intelligence, Machine Learning, Software Engineering, and innovative research.,, From developing intelligent AI systems to building scalable applications,,, he enjoys turning complex challenges into practical solutions.
+Thank you for visiting...
 
-But what truly defines Aarif is his mindset.
+I invite you to explore his work.
 
-He believes that every project is an opportunity to learn, every challenge is a chance to grow, and every idea has the potential to make a difference.
-
-This portfolio is a reflection of that journey.
-
-A collection of projects, experiences, and ideas that showcase not only what he has built, but also the passion that drives him forward.
-
-So, take your time, explore his work, and discover the story behind the technology. ,,,
-
-Thank you for visiting. ,,,
-
-And once again, welcome to Mohammed Aarif's portfolio.
 
 
 `;
