@@ -402,6 +402,21 @@ p {
   filter: blur(2px);
 }
 
+/* Override holographic on the avatar image-frame: no green, no hue-rotate */
+.image-frame.glass-card--holographic::after {
+  background: linear-gradient(
+    var(--holo-angle, 0deg),
+    var(--neon-cyan),
+    var(--neon-violet),
+    rgba(var(--neon-cyan-rgb), 0.6),
+    var(--neon-violet),
+    var(--neon-cyan)
+  );
+  animation: holographic-avatar 6s linear infinite;
+  opacity: 0.6;
+  filter: blur(3px);
+}
+
 /* Depth Levels */
 .depth-1 {
   background: rgba(13, 13, 26, 0.35);
@@ -520,6 +535,12 @@ p {
 @keyframes holographic {
   0%   { --holo-angle: 0deg;   filter: blur(2px) hue-rotate(0deg); }
   100% { --holo-angle: 360deg; filter: blur(2px) hue-rotate(360deg); }
+}
+
+@keyframes holographic-avatar {
+  0%   { --holo-angle: 0deg;   filter: blur(3px); }
+  50%  { --holo-angle: 180deg; filter: blur(2px); }
+  100% { --holo-angle: 360deg; filter: blur(3px); }
 }
 
 @keyframes scan-line {
@@ -2592,13 +2613,14 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, rgba(var(--neon-violet-rgb), 0.1), transparent);
+  background: radial-gradient(circle at center, rgba(var(--neon-cyan-rgb), 0.06), rgba(var(--neon-violet-rgb), 0.04), transparent 65%);
+  min-height: 320px;
 }
 
 .avatar-geometric {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 300px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2613,26 +2635,62 @@ p {
 
 .avatar-img-container {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 220px;
+  height: 220px;
   z-index: 5;
   border-radius: var(--radius-full);
   overflow: hidden;
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 0 0 15px rgba(var(--neon-cyan-rgb), 0.4);
+  border: 3px solid var(--neon-cyan);
+  box-shadow:
+    0 0 0 6px rgba(var(--neon-cyan-rgb), 0.10),
+    0 0 0 12px rgba(var(--neon-violet-rgb), 0.06),
+    0 0 30px rgba(var(--neon-cyan-rgb), 0.55),
+    0 0 60px rgba(var(--neon-cyan-rgb), 0.20),
+    0 8px 40px rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-abyss);
   transition: transform var(--duration-normal) var(--ease-out-expo), box-shadow var(--duration-normal) var(--ease-out-expo);
   transform-style: preserve-3d;
+  animation: avatar-pulse 4s var(--ease-in-out) infinite;
+}
+
+.avatar-img-container:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 0 6px rgba(var(--neon-cyan-rgb), 0.18),
+    0 0 0 14px rgba(var(--neon-violet-rgb), 0.10),
+    0 0 45px rgba(var(--neon-cyan-rgb), 0.75),
+    0 0 90px rgba(var(--neon-cyan-rgb), 0.30),
+    0 12px 50px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes avatar-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 6px rgba(var(--neon-cyan-rgb), 0.10),
+      0 0 0 12px rgba(var(--neon-violet-rgb), 0.06),
+      0 0 30px rgba(var(--neon-cyan-rgb), 0.55),
+      0 0 60px rgba(var(--neon-cyan-rgb), 0.20),
+      0 8px 40px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(var(--neon-cyan-rgb), 0.16),
+      0 0 0 16px rgba(var(--neon-violet-rgb), 0.08),
+      0 0 40px rgba(var(--neon-cyan-rgb), 0.70),
+      0 0 80px rgba(var(--neon-cyan-rgb), 0.28),
+      0 8px 40px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(1.05) contrast(1.05) saturate(0.9);
+  object-position: center top;
+  filter: brightness(1.05) contrast(1.08) saturate(0.95);
 }
 
 .avatar-scan-line {
