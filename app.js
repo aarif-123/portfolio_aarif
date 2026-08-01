@@ -1940,6 +1940,7 @@ I invite you to explore his work.
         '/academics': `ACADEMIC RECORD SUMMARY:\n\n1. B.Tech in CSE (AI/ML) | Lovely Professional University\n   • CGPA: 8.29 | Aug 2023 - Present\n\n2. Intermediate (PCM) | S.B.N Public School\n   • Score: 83% | Mar 2022 - May 2023\n\n3. Matriculation | S.S.N Public School\n   • Score: 92% | Mar 2020 - May 2021`,
         '/projects': `SELECTED WORK BLUEPRINTS:\n\n1. AETHER AI ASSISTANT\n   • GraphRAG system utilizing async FastAPI & Redis.\n   • Code: github.com/aarif-123/GraphRag-Research-Assistant\n   • Live: graph-rag-research-assistant.vercel.app\n\n2. AAROGYA CHATBOT\n   • RAG healthcare chatbot with pgvector & Prometheus observability.\n   • Code: github.com/aarif-123/HUMAN-NUTRITION-RAG\n   • Live: rag-chat-snowy.vercel.app\n\n3. BANKING DATA LAKEHOUSE\n   • PySpark ETL medallion architecture data pipeline.\n   • Code: github.com/aarif-123/banking-data-lakehouse\n\n4. SMS SPAM CLASSIFICATION\n   • Fine-tuned transformer models for message classification.\n   • Code: github.com/aarif-123/sms-classificarion\n\n5. HOUSE PRICE PREDICTION\n   • XGBoost regression model deployed on Vercel.\n   • Code: github.com/aarif-123/House-Price-prediciton\n   • Live: house-price-prediction-ai.vercel.app`,
         '/achievements': `MILESTONES & HACKATHONS RETRIEVED:\n\n1. AUTONOMOUS DRONE PATENT\n   • Patent filed: "Autonomous Drone System for the Maintenance of Street Cameras"\n   • Employs Edge AI and Computer Vision models for camera servicing.\n\n2. SMART INDIA HACKATHON WINNER\n   • Developed neural psychological assessment systems for early detection of suicidal tendencies. First place victory in national SIH.`,
+        '/leadership': `LEADERSHIP & POSITIONS OF RESPONSIBILITY:\n\n1. NEP SAARTHI (UGC Student Ambassador) | Lovely Professional University\n   • Duration: Jul 2026 - Present\n   • Selected as 1 of 12 student ambassadors representing LPU under UGC.\n   • Led awareness campaigns on NEP 2020, research, internships, and multidisciplinary study.\n   • Coordinated outreach events with university administration.`,
         '/certifications': `CORE CERTIFICATIONS RETRIEVED:\n\n1. GRAPH & ML SPECIALIST\n   • Neo4j Graph Databases Fundamentals & IIT Kharagpur ML Certified.\n\n2. DSA & SOFTWARE ENGINEERING\n   • LeetCode 260+ Solved Challenges & CipherSchool Java Core.`,
         '/contact': `ESTABLISH REAL-TIME CONNECTION:\n\n• Email: mohdaarif92422@gmail.com\n• LinkedIn: linkedin.com/in/mohdaarif01\n• GitHub: github.com/aarif-123\n• Mobile: +91 9257129010`
       };
@@ -2016,6 +2017,10 @@ I invite you to explore his work.
           cmd = '/certifications';
           targetSection = 'experience';
           targetTab = 'certifications';
+        } else if (rawQuery.includes('leader') || rawQuery.includes('ambassador') || rawQuery.includes('nep') || rawQuery.includes('saarthi') || rawQuery === '/leadership') {
+          cmd = '/leadership';
+          targetSection = 'experience';
+          targetTab = 'leadership';
         } else if (rawQuery.includes('contact') || rawQuery.includes('email') || rawQuery.includes('linkedin') || rawQuery.includes('phone') || rawQuery.includes('address') || rawQuery.includes('hire') || rawQuery === '/contact') {
           cmd = '/contact';
           targetSection = 'contact';
@@ -2025,12 +2030,12 @@ I invite you to explore his work.
         if (cmd && this.responses[cmd]) {
           reply = this.responses[cmd];
         } else if (rawQuery.includes('hello') || rawQuery.includes('hi') || rawQuery.includes('hey')) {
-          reply = `AETHER > Greetings. I am optimized to map Aarif's portfolio databases. Ask me a question or type commands:\n\n• /skills (Retrieve tech)\n• /projects (Retrieve works)\n• /academics (Retrieve education)\n• /achievements (Retrieve milestones)\n• /certifications (Retrieve certificates)\n• /contact (Display contacts)`;
+          reply = `AETHER > Greetings. I am optimized to map Aarif's portfolio databases. Ask me a question or type commands:\n\n• /skills (Retrieve tech)\n• /projects (Retrieve works)\n• /academics (Retrieve education)\n• /achievements (Retrieve milestones)\n• /leadership (Retrieve leadership)\n• /certifications (Retrieve certificates)\n• /contact (Display contacts)`;
         } else if (rawQuery.includes('clear')) {
           this.messages.innerHTML = `<div class="chat-message system"><span class="msg-sender">SYSTEM //</span> Console logs reset. Ready.</div>`;
           return;
         } else {
-          reply = `AETHER > Warning: Node "${text}" not fully mapped.\n\nPlease execute query:\n• /skills (Show tech)\n• /projects (Show works)\n• /academics (Show education)\n• /achievements (Show milestones)\n• /certifications (Show certificates)\n• /contact (Show contacts)`;
+          reply = `AETHER > Warning: Node "${text}" not fully mapped.\n\nPlease execute query:\n• /skills (Show tech)\n• /projects (Show works)\n• /academics (Show education)\n• /achievements (Show milestones)\n• /leadership (Show leadership)\n• /certifications (Show certificates)\n• /contact (Show contacts)`;
         }
 
         this._appendMsg('agent', reply);
