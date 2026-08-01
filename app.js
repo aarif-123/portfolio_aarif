@@ -1125,78 +1125,7 @@
     }
   }
 
-  /* -----------------------------------------------------------------------
-     17. CONTACT FORM VALIDATION & EFFECTS
-     ----------------------------------------------------------------------- */
-  class ContactForm {
-    constructor() {
-      this.form = document.getElementById('contact-form');
-      if (!this.form) return;
-      this._bindValidation();
-      this._bindFocusEffects();
-    }
 
-    _bindValidation() {
-      this.form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let valid = true;
-
-        this.form.querySelectorAll('[required]').forEach((input) => {
-          if (!input.value.trim()) {
-            valid = false;
-            input.classList.add('error');
-            this._shake(input);
-          } else {
-            input.classList.remove('error');
-          }
-
-          // Email validation
-          if (input.type === 'email' && input.value) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!re.test(input.value)) {
-              valid = false;
-              input.classList.add('error');
-              this._shake(input);
-            }
-          }
-        });
-
-        if (valid) {
-          const btn = this.form.querySelector('button[type="submit"], .submit-btn');
-          if (btn) {
-            btn.textContent = 'SENT ✓';
-            btn.classList.add('success');
-            // Particle burst on submit via click event is already handled by particle system
-          }
-        }
-      });
-    }
-
-    _shake(el) {
-      el.style.animation = 'none';
-      void el.offsetHeight; // trigger reflow
-      el.style.animation = 'shake 0.4s ease';
-    }
-
-    _bindFocusEffects() {
-      this.form.querySelectorAll('input, textarea').forEach((input) => {
-        input.addEventListener('focus', () => {
-          input.parentElement?.classList.add('focused');
-          input.style.boxShadow = '0 0 15px rgba(0,240,255,0.25)';
-        });
-        input.addEventListener('blur', () => {
-          input.parentElement?.classList.remove('focused');
-          input.style.boxShadow = 'none';
-          // Floating label check
-          if (input.value.trim()) {
-            input.classList.add('has-value');
-          } else {
-            input.classList.remove('has-value');
-          }
-        });
-      });
-    }
-  }
 
   /* -----------------------------------------------------------------------
      18. SOUND TOGGLE (Web Audio API ambient)
@@ -1964,7 +1893,7 @@ I invite you to explore his work.
     } catch (err) {
       console.warn('[Portfolio] MissionTabs init failed.', err);
     }
-    new ContactForm();
+
     new SoundToggle();
     new ScrollProgressBar();
     new GlitchText();
