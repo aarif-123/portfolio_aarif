@@ -4370,4 +4370,586 @@ p {
 }
 
 
+/* ====================================================================
+   MOBILE DEVICE UI OPTIMIZER
+   Breakpoints: 1024px · 768px · 480px · 360px
+   Appended as a consolidated authority layer — overrides earlier
+   fragmented responsive rules with high-specificity corrections.
+   ==================================================================== */
+
+/* ─── 1. Prevent any horizontal overflow site-wide ────────────── */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure every section container cannot overflow */
+section,
+.section-container,
+.section-container--wide,
+.section-container--narrow {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ─── 2. Tablet & Small Desktops (≤ 1024px) ───────────────────── */
+@media (max-width: 1024px) {
+  /* Allow full-viewport sections to shrink naturally instead of
+     forcing 100vh which causes excessive whitespace on short content */
+  .full-viewport {
+    min-height: auto;
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+
+  #hero.full-viewport {
+    min-height: 100svh; /* use svh so mobile browser chrome is excluded */
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* About grid: drop to single column, keep image compact */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl);
+  }
+
+  .about-image-wrapper {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* Skills grid: allow smaller cards without scroll */
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+  }
+
+  /* Projects: single column for readability */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* Section padding tightened */
+  #skills,
+  #projects,
+  #experience {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+
+/* ─── 3. Mobile & Portrait Tablets (≤ 768px) ──────────────────── */
+@media (max-width: 768px) {
+  /* ── Typography ── */
+  h1, .hero-title {
+    font-size: clamp(2rem, 9vw, 3.2rem) !important;
+    line-height: 1.1;
+  }
+
+  h2, .section-title {
+    font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
+  }
+
+  h3, .timeline-title {
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+  }
+
+  /* ── Hero ── */
+  #hero.full-viewport {
+    min-height: 100svh;
+    padding: var(--space-2xl) var(--space-sm);
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding: 0 var(--space-xs);
+  }
+
+  .hero-description {
+    font-size: var(--fs-base);
+    padding: 0;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-subtitle {
+    letter-spacing: 0.12em;
+    font-size: var(--fs-xs);
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-sm);
+  }
+
+  .hero-cta .btn,
+  .hero-cta .btn-primary,
+  .hero-cta .btn-ghost {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.85em 1.2em;
+    font-size: var(--fs-xs);
+    /* Minimum 44px touch target */
+    min-height: 44px;
+  }
+
+  /* ── Navigation ── */
+  .navbar {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .nav-links,
+  .nav-social-link,
+  .nav-divider {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: flex !important;
+    /* Minimum 44px touch target for accessibility */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* ── HUD ── */
+  #hud-top {
+    padding: 5px 10px;
+    font-size: 0.62rem;
+  }
+
+  #hud-top .hud-coords,
+  #hud-top .hud-title,
+  #hud-top .hud-agents {
+    display: none !important;
+  }
+
+  /* ── About ── */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg);
+  }
+
+  .about-image-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .avatar-geometric {
+    width: min(280px, 80vw) !important;
+    height: min(280px, 80vw) !important;
+  }
+
+  .avatar-img-container {
+    width: min(210px, 60vw) !important;
+    height: min(210px, 60vw) !important;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-sm) !important;
+  }
+
+  /* ── Skills ── */
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-md);
+  }
+
+  .skill-category {
+    padding: var(--space-md) !important;
+  }
+
+  /* ── Projects ── */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .project-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-img-asset {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  /* Always show project overlay on touch */
+  .project-overlay {
+    position: relative !important;
+    opacity: 1 !important;
+    background: rgba(10, 10, 15, 0.7) !important;
+    padding: var(--space-sm) !important;
+    inset: auto !important;
+    border-top: 1px solid rgba(var(--neon-cyan-rgb), 0.15);
+  }
+
+  .project-actions {
+    width: 100%;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .project-actions .btn {
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+    padding: 0.7em 1em;
+    font-size: 0.7rem;
+    /* 44px min touch target */
+    min-height: 44px;
+  }
+
+  .project-info {
+    padding: var(--space-md) var(--space-md);
+  }
+
+  /* ── Mission Log Tabs ── */
+  .mission-tabs {
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mission-tab-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 0.72rem;
+    /* Touch target */
+    min-height: 44px;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    padding-left: 20px;
+  }
+
+  .timeline-line,
+  .timeline-line-fill {
+    left: 8px !important;
+    transform: none !important;
+  }
+
+  .timeline-dot {
+    left: 8px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .timeline-item {
+    width: 100% !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+    padding-left: 24px !important;
+    padding-right: 0 !important;
+  }
+
+  .timeline-header-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3xs);
+  }
+
+  /* Wide cards in panels */
+  .wide-card {
+    padding: var(--space-md) !important;
+  }
+
+  /* ── Contact ── */
+  .contact-grid {
+    flex-direction: column !important;
+    gap: var(--space-xl);
+  }
+
+  .contact-info {
+    width: 100%;
+  }
+
+  .contact-headline {
+    font-size: clamp(1.4rem, 5.5vw, 2rem) !important;
+  }
+
+  .contact-channel {
+    padding: 12px 14px;
+  }
+
+  /* ── Footer ── */
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+
+  .footer-title-row {
+    justify-content: center;
+  }
+
+  /* ── Section spacing ── */
+  .section-container {
+    padding: var(--space-xl) var(--space-sm) !important;
+  }
+
+  #hero,
+  #about,
+  #skills,
+  #projects,
+  #experience,
+  #contact {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* ── AI Chatbox ── */
+  .ai-agent-widget {
+    bottom: 16px;
+    right: 14px;
+  }
+
+  .ai-agent-chatbox {
+    position: fixed;
+    bottom: 72px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: calc(100vw - 20px);
+    height: min(420px, 70vh);
+    z-index: 1001;
+  }
+
+  /* ── Glass cards ── */
+  .glass-card {
+    padding: var(--space-md) !important;
+  }
+}
+
+
+/* ─── 4. Small Phones (≤ 480px) ───────────────────────────────── */
+@media (max-width: 480px) {
+  :root {
+    --fs-hero: clamp(1.9rem, 10vw, 2.6rem);
+    --fs-4xl:  1.5rem;
+    --fs-3xl:  1.3rem;
+    --fs-2xl:  1.1rem;
+  }
+
+  /* ── Layout ── */
+  .section-container {
+    padding: var(--space-lg) var(--space-xs) !important;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Hero ── */
+  #hero.full-viewport {
+    padding: var(--space-xl) var(--space-xs);
+  }
+
+  .hero-description {
+    font-size: var(--fs-sm);
+  }
+
+  /* ── About stats: 2 columns ── */
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-xs) !important;
+  }
+
+  .stat-number {
+    font-size: 1.7rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.58rem !important;
+  }
+
+  /* ── Avatar ── */
+  .avatar-geometric {
+    width: min(240px, 78vw) !important;
+    height: min(240px, 78vw) !important;
+  }
+
+  .avatar-img-container {
+    width: min(180px, 58vw) !important;
+    height: min(180px, 58vw) !important;
+  }
+
+  /* ── Project images ── */
+  .project-img-asset {
+    height: 175px;
+  }
+
+  /* ── Contact channels ── */
+  .contact-channel {
+    padding: 10px 12px;
+  }
+
+  .contact-channel-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ── Skills tab buttons ── */
+  .mission-tab-btn {
+    font-size: 0.68rem;
+    padding: 10px 12px;
+  }
+
+  /* ── Section heading line ── */
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-heading::after {
+    width: 100%;
+  }
+}
+
+
+/* ─── 5. Very Small Phones (≤ 360px) ──────────────────────────── */
+@media (max-width: 360px) {
+  :root {
+    --fs-hero: 1.7rem;
+    --fs-4xl:  1.3rem;
+    --fs-3xl:  1.15rem;
+  }
+
+  .section-container {
+    padding: var(--space-md) var(--space-2xs) !important;
+  }
+
+  h1, .hero-title {
+    font-size: 1.7rem !important;
+  }
+
+  h2, .section-title {
+    font-size: 1.4rem !important;
+  }
+
+  .hero-cta .btn,
+  .hero-cta .btn-primary {
+    max-width: 100%;
+    font-size: 0.7rem;
+  }
+
+  .mission-tab-btn {
+    font-size: 0.64rem;
+    padding: 8px 10px;
+  }
+
+  .project-img-asset {
+    height: 150px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .stat-number {
+    font-size: 1.5rem !important;
+  }
+
+  /* AI widget: keep it accessible but smaller */
+  .ai-agent-fab {
+    width: 46px !important;
+    height: 46px !important;
+  }
+}
+
+
+/* ─── 6. Touch Device Enhancements (pointer: coarse) ──────────── */
+@media (pointer: coarse) {
+  /* Ensure all interactive elements have 44px minimum touch target */
+  .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-secondary,
+  .mobile-nav-link,
+  .mission-tab-btn,
+  .nav-btn,
+  .quick-tag,
+  .contact-channel,
+  .mobile-social-link {
+    min-height: 44px;
+  }
+
+  /* Remove hover-only states that don't work on touch */
+  .project-card:hover {
+    transform: none;
+  }
+
+  .skill-card:hover {
+    transform: none;
+  }
+
+  /* Project overlay always visible on touch */
+  .project-overlay {
+    position: relative !important;
+    opacity: 1 !important;
+    background: rgba(10, 10, 15, 0.65) !important;
+    padding: var(--space-sm) !important;
+    inset: auto !important;
+    border-top: 1px solid rgba(var(--neon-cyan-rgb), 0.15);
+  }
+}
+
+
+/* ─── 7. Landscape Phone Orientation ──────────────────────────── */
+@media (max-width: 768px) and (orientation: landscape) {
+  #hero.full-viewport {
+    min-height: auto;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .avatar-geometric {
+    width: min(180px, 35vw) !important;
+    height: min(180px, 35vw) !important;
+  }
+
+  .ai-agent-chatbox {
+    height: min(320px, 80vh);
+  }
+}
+
+
+/* ─── 8. Safe Area Insets (iPhone notch / home-bar) ───────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .navbar {
+    padding-left: max(var(--space-md), env(safe-area-inset-left));
+    padding-right: max(var(--space-md), env(safe-area-inset-right));
+  }
+
+  .mobile-menu {
+    padding-bottom: max(var(--space-2xl), env(safe-area-inset-bottom));
+  }
+
+  .ai-agent-widget {
+    bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px));
+    right: max(14px, env(safe-area-inset-right));
+  }
+
+  footer {
+    padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  }
+}
 
